@@ -149,7 +149,7 @@ class List_siswa extends CI_Controller
 							if ($hasil[0] && $hasil[1]) {
 								$cek = $this->universal->getOneSelect('nama', [
 									'nama'       => $hasil[1],
-									'nisn'       => $hasil[3]
+									'nisn'       => str_replace('\'', '', $hasil[3])
 								], 'siswa');
 
 								if (!$cek) {
@@ -176,10 +176,10 @@ class List_siswa extends CI_Controller
 						if ($insert) {
 							$this->session->set_flashdata('notif-sukses', 'Data berhasil diimport');
 						} else {
-							$this->session->set_flashdata('notif-sukses', 'Data gagal diimport');
+							$this->session->set_flashdata('notif-error', 'Data gagal diimport');
 						}
 					} else {
-						$this->session->set_flashdata('notif-sukses', 'Gagal import ! Data kosong / sudah ada dalam database');
+						$this->session->set_flashdata('notif-error', 'Gagal import ! Data kosong / sudah ada dalam database');
 					}
 					//redirect halaman
 					redirect('admin/list_siswa');
