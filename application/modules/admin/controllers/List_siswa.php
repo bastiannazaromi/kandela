@@ -132,9 +132,6 @@ class List_siswa extends CI_Controller
 				if (isset($_FILES['file_excel']['name']) && in_array($_FILES['file_excel']['type'], $file_mimes)) {
 					$upload_data = $this->upload->data();
 
-					echo 123;
-					die;
-
 					$arr_file = explode('.', $_FILES['file_excel']['name']);
 					$extension = end($arr_file);
 					if ('csv' == $extension) {
@@ -154,9 +151,6 @@ class List_siswa extends CI_Controller
 									'nama'       => $hasil[1],
 									'nisn'       => $hasil[3]
 								], 'siswa');
-
-								echo json_encode($cek);
-								die;
 
 								if (!$cek) {
 									array_push($data, [
