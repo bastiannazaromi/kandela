@@ -152,9 +152,6 @@ class List_siswa extends CI_Controller
 									'nisn'       => str_replace('\'', '', $hasil[3])
 								], 'siswa');
 
-								echo json_encode($cek);
-								die;
-
 								if (!$cek) {
 									array_push($data, [
 										"nisn"          	=> str_replace('\'', '', $hasil[3]),
