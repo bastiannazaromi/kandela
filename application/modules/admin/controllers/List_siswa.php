@@ -132,6 +132,9 @@ class List_siswa extends CI_Controller
 				if (isset($_FILES['file_excel']['name']) && in_array($_FILES['file_excel']['type'], $file_mimes)) {
 					$upload_data = $this->upload->data();
 
+					echo 123;
+					die;
+
 					$arr_file = explode('.', $_FILES['file_excel']['name']);
 					$extension = end($arr_file);
 					if ('csv' == $extension) {
@@ -152,6 +155,9 @@ class List_siswa extends CI_Controller
 									'nisn'       => $hasil[3]
 								], 'siswa');
 
+								echo json_encode($cek);
+								die;
+
 								if (!$cek) {
 									array_push($data, [
 										"nisn"          	=> str_replace('\'', '', $hasil[3]),
@@ -168,8 +174,8 @@ class List_siswa extends CI_Controller
 					//delete file from server
 					unlink(FCPATH . 'upload/excel/' . $upload_data['file_name']);
 
-					echo json_encode($data);
-					die;
+					// echo json_encode($data);
+					// die;
 					if (count($data) != 0) {
 						//$insert = $this->db->insert_batch('mahasiswa', $data);
 						$insert = $this->universal->insert_batch($data, 'siswa');
